@@ -1,5 +1,5 @@
 var a=require('fs');
-var input=a.createReadStream('./FoodFacts/FoodFacts_2.csv');
+var input=a.createReadStream('./FoodFacts/FoodFacts.csv');
 var rl=require('readline').createInterface({
   input: input
 });
@@ -84,7 +84,7 @@ var northEurope=["United Kingdom", "Denmark", "Sweden" ,"Norway"];
 var centralEurope=["France", "Belgium", "Germany", "Switzerland","Netherlands"];
 var southEurope=["Portugal", "Greece", "Italy", "Spain", "Croatia","Albania"];
 var regions=["North Europe","Central Europe","South Europe"];
-var multi_series=[];
+var europe=[];
 var splitted_data=[];
 
 var i=0;
@@ -383,13 +383,13 @@ rl.on('line',function(line)
      //console.log(UK_the_final[UK_the_final.length-1]);
    }//United_kingdom_if
 
-   
 
 
 
-   for(var aa=0;aa<northEurope.length;aa++)
+
+   for(var a=0;a<northEurope.length;a++)
    {
-     if(northEurope[aa]==splitted_data[in_country])
+     if(northEurope[a]==splitted_data[in_country])
      {
        var value_region="North Europe"
        var value_country_2=splitted_data[in_country];
@@ -410,9 +410,9 @@ rl.on('line',function(line)
          value_carbohydrates=0;
        }
 
-       if(multi_series[regions.indexOf(value_region)]==null)
+       if(europe[regions.indexOf(value_region)]==null)
        {
-         multi_series[regions.indexOf(value_region)] = {
+         europe[regions.indexOf(value_region)] = {
            "region": value_region,
            "fat" : parseFloat(value_fat),
            "proteins" : parseFloat(value_protein),
@@ -421,16 +421,16 @@ rl.on('line',function(line)
        }
        else
        {
-         multi_series[regions.indexOf(value_region)].fat=multi_series[regions.indexOf(value_region)].fat+parseFloat(value_fat);
-         multi_series[regions.indexOf(value_region)].proteins=multi_series[regions.indexOf(value_region)].proteins+parseFloat(value_protein);
-         multi_series[regions.indexOf(value_region)].carbohydrates=multi_series[regions.indexOf(value_region)].carbohydrates+parseFloat(value_carbohydrates);
+         europe[regions.indexOf(value_region)].fat=europe[regions.indexOf(value_region)].fat+parseFloat(value_fat);
+         europe[regions.indexOf(value_region)].proteins=europe[regions.indexOf(value_region)].proteins+parseFloat(value_protein);
+         europe[regions.indexOf(value_region)].carbohydrates=europe[regions.indexOf(value_region)].carbohydrates+parseFloat(value_carbohydrates);
        }
      }
    }
 
-   for(var ab=0;ab<centralEurope.length;ab++)
+   for(var b=0;b<centralEurope.length;b++)
    {
-     if(centralEurope[aa]==splitted_data[in_country])
+     if(centralEurope[b]==splitted_data[in_country])
      {
        var value_region="Central Europe"
        var value_country_2=splitted_data[in_country];
@@ -450,9 +450,9 @@ rl.on('line',function(line)
        {
          value_carbohydrates=0;
        }
-       if(multi_series[regions.indexOf(value_region)]==null)
+       if(europe[regions.indexOf(value_region)]==null)
        {
-         multi_series[regions.indexOf(value_region)] = {
+         europe[regions.indexOf(value_region)] = {
            "region": value_region,
            "fat" : parseFloat(value_fat),
            "proteins" : parseFloat(value_protein),
@@ -461,16 +461,16 @@ rl.on('line',function(line)
        }
        else
        {
-         multi_series[regions.indexOf(value_region)].fat=multi_series[regions.indexOf(value_region)].fat+parseFloat(value_fat);
-         multi_series[regions.indexOf(value_region)].proteins=multi_series[regions.indexOf(value_region)].proteins+parseFloat(value_protein);
-         multi_series[regions.indexOf(value_region)].carbohydrates=multi_series[regions.indexOf(value_region)].carbohydrates+parseFloat(value_carbohydrates);
+         europe[regions.indexOf(value_region)].fat=europe[regions.indexOf(value_region)].fat+parseFloat(value_fat);
+         europe[regions.indexOf(value_region)].proteins=europe[regions.indexOf(value_region)].proteins+parseFloat(value_protein);
+         europe[regions.indexOf(value_region)].carbohydrates=europe[regions.indexOf(value_region)].carbohydrates+parseFloat(value_carbohydrates);
        }
      }
    }
 
-   for(var ac=0;ac<southEurope.length;ac++)
+   for(var c=0;c<southEurope.length;c++)
    {
-     if(centralEurope[aa]==splitted_data[in_country])
+     if(southEurope[c]==splitted_data[in_country])
      {
        var value_region="South Europe"
        var value_country_2=splitted_data[in_country];
@@ -490,9 +490,9 @@ rl.on('line',function(line)
        {
          value_carbohydrates=0;
        }
-       if(multi_series[regions.indexOf(value_region)]==null)
+       if(europe[regions.indexOf(value_region)]==null)
        {
-         multi_series[regions.indexOf(value_region)] = {
+         europe[regions.indexOf(value_region)] = {
            "region": value_region,
            "fat" : parseFloat(value_fat),
            "proteins" : parseFloat(value_protein),
@@ -501,14 +501,14 @@ rl.on('line',function(line)
        }
        else
        {
-         multi_series[regions.indexOf(value_region)].fat=multi_series[regions.indexOf(value_region)].fat+parseFloat(value_fat);
-         multi_series[regions.indexOf(value_region)].proteins=multi_series[regions.indexOf(value_region)].proteins+parseFloat(value_protein);
-         multi_series[regions.indexOf(value_region)].carbohydrates=multi_series[regions.indexOf(value_region)].carbohydrates+parseFloat(value_carbohydrates);
+         europe[regions.indexOf(value_region)].fat=europe[regions.indexOf(value_region)].fat+parseFloat(value_fat);
+         europe[regions.indexOf(value_region)].proteins=europe[regions.indexOf(value_region)].proteins+parseFloat(value_protein);
+         europe[regions.indexOf(value_region)].carbohydrates=europe[regions.indexOf(value_region)].carbohydrates+parseFloat(value_carbohydrates);
        }
      }
    }
    //console.log(lines_1);
-//a.writeFile('FoodFacts/json_Fat_protein_carbohydrates.json',JSON.stringify(multi_series),'utf-8');
+//a.writeFile('FoodFacts/json_Fat_protein_carbohydrates.json',JSON.stringify(europe),'utf-8');
 }//else
 
 
@@ -526,7 +526,7 @@ rl.on('line',function(line)
 
 
     a.writeFile("FoodFacts/json_Sugar_salt_new_1.json",JSON.stringify(the_final_most),'utf-8');
-    
-    a.writeFile('FoodFacts/json_Fat_protein_carbohydrates_new_1.json',JSON.stringify(multi_series),'utf-8');
+
+    a.writeFile('FoodFacts/json_Fat_protein_carbohydrates_new_1.json',JSON.stringify(europe),'utf-8');
 
  });
